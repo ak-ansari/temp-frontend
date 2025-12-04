@@ -38,4 +38,15 @@ export const extensionMapping: Record<string, DocCategory> = {
   txt:  DocCategory.DOCUMENT,
   md:  DocCategory.DOCUMENT,
   rtf:  DocCategory.DOCUMENT,
+
+  mp4: DocCategory.VIDEO,
+  mov: DocCategory.VIDEO,
+  avi: DocCategory.VIDEO,
+  mkv: DocCategory.VIDEO,
+  wmv: DocCategory.VIDEO,
+  flv: DocCategory.VIDEO,
+  webm: DocCategory.VIDEO,
+  mpeg: DocCategory.VIDEO,
+  mpg: DocCategory.VIDEO,
+  m4v: DocCategory.VIDEO,
 };

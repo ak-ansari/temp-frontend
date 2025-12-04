@@ -7,6 +7,7 @@ export const CustomColors = {
   BLACK_300: '#5D627C',
   BLACK_400: '#5D627C',
   BLACK_500: '#1A1F38',
+  BLACK_500_B: '#2C3045',
   BLACK_800: '#13172A',
   BLACK_900: '#0A0C15',
   PRIMARY_25: '#F5F8FD',

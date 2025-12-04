@@ -2,10 +2,12 @@ import { Box, IconButton } from "@mui/material";
 import { FC } from "react";
 import ImageViewer from "./ImageViewer";
 import { CustomColors } from "../colors";
-import DocumentViewer from "./DocumentViewer";
+import OfficeDocViewer from "./DocumentViewer";
 import { DocCategory } from "./DocPreview.types";
-import ArrowNextIcon from "@mui/icons-material/NavigateNextOutlined";
-import ArrowBackIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowNextIcon from "@mui/icons-material/NavigateNextRounded";
+import ArrowBackIcon from "@mui/icons-material/NavigateBeforeRounded";
+import UnsupportedFormat from "./UnsupportedFormat";
+import VideoPlayer from "./VideoPlayer";
 
 interface Props {
   fileDetails: {
@@ -29,21 +31,25 @@ const ViewWrapper: FC<Props> = ({
     <Box
       sx={{
         flex: 1,
-        display: "flex",
-        overflowY: "hidden",
+        display: 'flex',
+        overflowY: 'hidden',
         bgcolor: CustomColors.BLACK_100,
       }}
     >
       <Box
         sx={{
-          width: "64px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          width: '64px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         {currentIndex > 0 && (
-          <IconButton children={<ArrowBackIcon />} onClick={onPrevious} />
+          <IconButton
+            sx={{ bgcolor: '#FFF', borderRadius: '50%' }}
+            children={<ArrowBackIcon />}
+            onClick={onPrevious}
+          />
         )}
       </Box>
       {(() => {
@@ -51,21 +57,34 @@ const ViewWrapper: FC<Props> = ({
           case DocCategory.IMAGE:
             return <ImageViewer fileUrl={fileDetails.fileUrl} />;
           case DocCategory.PDF:
-            return <DocumentViewer isPdf fileUrl={fileDetails.fileUrl} />;
+            return <OfficeDocViewer isPdf fileUrl={fileDetails.fileUrl} />;
           case DocCategory.DOCUMENT:
-            return <DocumentViewer fileUrl={fileDetails.fileUrl} />;
+            return <OfficeDocViewer fileUrl={fileDetails.fileUrl} />;
+          case DocCategory.VIDEO:
+            return <VideoPlayer fileUrl={fileDetails.fileUrl} />;
+          default:
+            return <Box sx={{
+              flex:1,
+              justifyContent:"center",
+              alignItems:"center",
+              display:"flex",
+            }}><UnsupportedFormat sx={{height:"64px"}} errorText='Unsupported File'/></Box>;
         }
       })()}
       <Box
         sx={{
-          width: "64px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          width: '64px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         {currentIndex < total - 1 && (
-          <IconButton children={<ArrowNextIcon />} onClick={onNext} />
+          <IconButton
+            sx={{ bgcolor: '#FFF', borderRadius: '50%' }}
+            children={<ArrowNextIcon />}
+            onClick={onNext}
+          />
         )}
       </Box>
     </Box>
@@ -73,3 +92,4 @@ const ViewWrapper: FC<Props> = ({
 };
 
 export default ViewWrapper;
+
